@@ -1,0 +1,529 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AMSVISA | לינקים להגשה שלנו</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Heebo:wght@300;400;700;900&display=swap');
+
+        :root {
+            --primary-color: #00b4d8; /* צבע תכלת מתוך הלוגו */
+            --primary-dark: #0096b4;
+            --secondary-color: #4a4a4a; /* אפור כהה מתוך הלוגו */
+            --bg-color: #f4f7f6;
+            --card-bg: #ffffff;
+            --text-color: #333333;
+        }
+
+        body {
+            font-family: 'Heebo', sans-serif;
+            background-color: var(--bg-color);
+            color: var(--text-color);
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+
+        /* --- Header & Hero --- */
+        header {
+            background-color: #ffffff;
+            padding: 20px 0;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 80px;
+        }
+
+        /* Styling for the logo if image is missing/alt text */
+        .logo {
+            max-width: 300px;
+            height: auto;
+            font-size: 2rem;
+            font-weight: 900;
+            color: var(--secondary-color);
+            text-decoration: none;
+        }
+        
+        .logo-fallback {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: var(--secondary-color);
+            letter-spacing: 2px;
+        }
+        .logo-fallback span {
+            color: var(--primary-color);
+        }
+
+        .hero {
+            text-align: center;
+            padding: 60px 20px;
+            background: linear-gradient(135deg, #3a3a3a, var(--secondary-color));
+            color: white;
+            border-bottom: 5px solid var(--primary-color);
+        }
+
+        .hero h1 {
+            margin: 0 0 15px 0;
+            font-size: 3rem;
+            color: #ffffff;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .hero h1 span {
+            color: var(--primary-color);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin: 0;
+            font-weight: 300;
+            opacity: 0.9;
+        }
+
+        /* --- Main Content --- */
+        main {
+            max-width: 1200px;
+            margin: -30px auto 40px auto; /* Pull up slightly over the hero */
+            padding: 0 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.2rem;
+            color: var(--secondary-color);
+            margin-bottom: 40px;
+            margin-top: 40px;
+            font-weight: 700;
+        }
+
+        /* --- Search Bar --- */
+        .search-container {
+            text-align: center;
+            margin-bottom: 40px;
+            padding: 0 10px;
+        }
+
+        #searchInput {
+            width: 100%;
+            max-width: 500px;
+            padding: 15px 25px;
+            font-size: 1.1rem;
+            border: 2px solid #e0e0e0;
+            border-radius: 30px;
+            outline: none;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        #searchInput:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 15px rgba(0, 180, 216, 0.2);
+        }
+
+        /* --- Grid Layout --- */
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        /* --- Visa Cards --- */
+        .card {
+            background-color: var(--card-bg);
+            border-radius: 12px;
+            padding: 30px 25px;
+            box-shadow: 0 8px 20px rgba(0,0,0,0.06);
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            border-top: 5px solid var(--primary-color);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        /* Small decorative element */
+        .card::before {
+            content: "";
+            position: absolute;
+            top: -50px;
+            right: -50px;
+            width: 100px;
+            height: 100px;
+            background: var(--primary-color);
+            opacity: 0.05;
+            border-radius: 50%;
+        }
+
+        .card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+        }
+
+        .card h3 {
+            margin: 0 0 15px 0;
+            color: var(--secondary-color);
+            font-size: 1.5rem;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .flag {
+            width: 32px;
+            height: auto;
+            border-radius: 4px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .brand-logo {
+            width: 36px;
+            height: auto;
+            object-fit: contain;
+        }
+
+        .card .badge {
+            display: inline-block;
+            background-color: rgba(0, 180, 216, 0.1);
+            color: var(--primary-dark);
+            padding: 6px 12px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 700;
+            margin-bottom: 25px;
+            align-self: flex-start;
+            border: 1px solid rgba(0, 180, 216, 0.2);
+        }
+
+        .links-group {
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        
+        .links-group a.btn {
+            margin-top: 0;
+            padding: 10px 15px;
+            font-size: 1rem;
+        }
+
+        .credentials {
+            background-color: #f8f9fa;
+            border: 1px dashed #00b4d8; /* צבע מסגרת עדין תואם למותג */
+            padding: 12px;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            margin-bottom: 15px;
+            text-align: right;
+            color: var(--secondary-color);
+        }
+
+        .credentials strong {
+            color: var(--primary-dark);
+            display: inline-block;
+            width: 55px; /* מרווח אחיד לטקסט */
+        }
+        
+        .credentials .val {
+            font-family: monospace;
+            background: white;
+            padding: 3px 6px;
+            border-radius: 4px;
+            border: 1px solid #e0e0e0;
+            display: inline-block;
+            direction: ltr; /* שומר על המייל והסיסמה באנגלית משמאל לימין */
+            color: #333;
+            font-size: 0.95rem;
+        }
+
+        .card a.btn {
+            margin-top: auto;
+            display: block;
+            text-align: center;
+            background-color: var(--primary-color);
+            color: white;
+            text-decoration: none;
+            padding: 14px 20px;
+            border-radius: 8px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(0, 180, 216, 0.2);
+        }
+
+        .card a.btn:hover {
+            background-color: var(--primary-dark);
+            box-shadow: 0 6px 12px rgba(0, 180, 216, 0.3);
+            transform: translateY(-2px);
+        }
+
+        /* --- Utilities Section --- */
+        .utilities {
+            margin-top: 70px;
+            padding-top: 40px;
+            border-top: 2px dashed #d1d9d6;
+        }
+        
+        .utilities .card {
+            border-top-color: var(--secondary-color);
+        }
+        
+        .utilities .card .badge {
+            background-color: #f0f0f0;
+            color: var(--secondary-color);
+            border-color: #e0e0e0;
+        }
+        
+        .utilities .card a.btn {
+            background-color: var(--secondary-color);
+            box-shadow: 0 4px 6px rgba(74, 74, 74, 0.2);
+        }
+        
+        .utilities .card a.btn:hover {
+            background-color: #333333;
+            box-shadow: 0 6px 12px rgba(74, 74, 74, 0.3);
+        }
+
+        /* --- Footer --- */
+        footer {
+            text-align: center;
+            padding: 30px 20px;
+            background-color: var(--secondary-color);
+            color: white;
+            margin-top: 60px;
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            .hero p { font-size: 1.1rem; }
+            .section-title { font-size: 1.8rem; }
+            main { margin-top: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Header / Logo -->
+    <header>
+        <!-- תמונת הלוגו משולבת עם טיפול במקרה שהיא לא נטענת בתצוגה המקדימה -->
+        <a href="#" style="text-decoration: none;">
+            <img src="ויזה לוגו סופי (15).jpg" alt="AMSVISA Logo" class="logo" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
+            <div id="logo-fallback" class="logo-fallback" style="display: none;">
+                AMS<span>VISA</span>
+            </div>
+        </a>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>לינקים להגשה <span>שלנו</span></h1>
+        <p>כל הקישורים הישירים למערכות ההגשה הממשלתיות מסביב לעולם – מרוכזים במקום אחד עבור צוות AMSVISA.</p>
+    </section>
+
+    <!-- Main Content -->
+    <main>
+        <h2 class="section-title">מאגר קישורים להגשה לפי מדינה</h2>
+        
+        <div class="search-container">
+            <input type="text" id="searchInput" placeholder="הקלד שם מדינה לחיפוש (לדוגמה: ארצות הברית, אוסטרליה, Canada)...">
+        </div>
+        
+        <div class="grid-container" id="destinationsGrid">
+            <!-- USA -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/us.png" alt="USA Flag" class="flag"> ארצות הברית (USA)</h3>
+                <span class="badge">ESTA / ויזת תייר</span>
+                <div class="links-group">
+                    <a href="https://esta.cbp.dhs.gov/" target="_blank" class="btn">הגשת בקשת ESTA</a>
+                    <a href="https://ceac.state.gov/GenNIV/Default.aspx" target="_blank" class="btn">מילוי טופס בקשה (DS-160)</a>
+                    <a href="https://ais.usvisa-info.com" target="_blank" class="btn">תשלום אגרה וקביעת תור</a>
+                </div>
+            </div>
+
+            <!-- Australia -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/au.png" alt="Australia Flag" class="flag"> אוסטרליה (Australia)</h3>
+                <span class="badge">eVisitor / ETA</span>
+                <div class="links-group" style="margin-top: 0;">
+                    <div style="font-size: 0.95rem; font-weight: bold; color: var(--secondary-color); margin-bottom: 5px;">עבור בעלי דרכון אירופי:</div>
+                    <div class="credentials" style="margin-bottom: 10px; padding: 10px;">
+                        <div style="margin-bottom: 8px;">
+                            <strong>משתמש:</strong> <span class="val">shaib</span>
+                        </div>
+                        <div>
+                            <strong>סיסמה:</strong> <span class="val">VisaDept15</span>
+                        </div>
+                    </div>
+                    <a href="https://online.immi.gov.au/lusc/login" target="_blank" class="btn">כניסה למערכת ההגשה</a>
+                    
+                    <hr style="border: 0; border-top: 1px dashed #d1d9d6; margin: 15px 0 5px 0; width: 100%;">
+                    
+                    <div style="font-size: 0.95rem; font-weight: bold; color: var(--secondary-color); margin-bottom: 5px;">עבור בעלי דרכון אמריקאי:</div>
+                    <a href="https://immi.homeaffairs.gov.au/visas/getting-a-visa/visa-listing/electronic-travel-authority-601" target="_blank" class="btn">כניסה למערכת ההגשה</a>
+                </div>
+            </div>
+
+            <!-- Canada -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/ca.png" alt="Canada Flag" class="flag"> קנדה (Canada)</h3>
+                <span class="badge">eTA</span>
+                <a href="https://www.canada.ca/en/immigration-refugees-citizenship/services/visit-canada/eta/apply.html" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+
+            <!-- Sri Lanka -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/lk.png" alt="Sri Lanka Flag" class="flag"> סרי לנקה (Sri Lanka)</h3>
+                <span class="badge">ETA / e-Visa</span>
+                <a href="https://eta.gov.lk/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+
+            <!-- New Zealand -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/nz.png" alt="New Zealand Flag" class="flag"> ניו זילנד (New Zealand)</h3>
+                <span class="badge">NZeTA</span>
+                <a href="https://nzeta.immigration.govt.nz/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+
+            <!-- Kenya -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/ke.png" alt="Kenya Flag" class="flag"> קניה (Kenya)</h3>
+                <span class="badge">eTA</span>
+                <div class="credentials">
+                    <div style="margin-bottom: 8px;">
+                        <strong>משתמש:</strong> <span class="val">visa.dept@amsalem.com</span>
+                    </div>
+                    <div>
+                        <strong>סיסמה:</strong> <span class="val">visadept15</span>
+                    </div>
+                </div>
+                <a href="https://etakenya.go.ke/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+
+            <!-- India -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/in.png" alt="India Flag" class="flag"> הודו (India)</h3>
+                <span class="badge">e-Visa</span>
+                <a href="https://indianvisaonline.gov.in/evisa/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+
+            <!-- Morocco -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/ma.png" alt="Morocco Flag" class="flag"> מרוקו (Morocco)</h3>
+                <span class="badge">eVisa</span>
+                <a href="https://www.acces-maroc.ma/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+
+            <!-- Ethiopia -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/et.png" alt="Ethiopia Flag" class="flag"> אתיופיה (Ethiopia)</h3>
+                <span class="badge">eVisa</span>
+                <a href="https://www.evisa.gov.et/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+
+            <!-- Armenia -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/am.png" alt="Armenia Flag" class="flag"> ארמניה (Armenia)</h3>
+                <span class="badge">eVisa</span>
+                <a href="https://evisa.mfa.am/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+
+            <!-- Bahrain -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/bh.png" alt="Bahrain Flag" class="flag"> בחריין (Bahrain)</h3>
+                <span class="badge">eVisa</span>
+                <a href="https://evisa.gov.bh/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+
+            <!-- Korea -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/kr.png" alt="Korea Flag" class="flag"> דרום קוריאה (Korea)</h3>
+                <span class="badge">K-ETA</span>
+                <a href="https://www.k-eta.go.kr/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+
+            <!-- UK -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/gb.png" alt="UK Flag" class="flag"> אנגליה (UK)</h3>
+                <span class="badge">ETA</span>
+                <a href="https://www.gov.uk/eta/apply" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+
+            <!-- Thailand -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/th.png" alt="Thailand Flag" class="flag"> תאילנד (Thailand)</h3>
+                <span class="badge">eVisa</span>
+                <a href="https://www.thaievisa.go.th/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+            
+            <!-- Israel -->
+            <div class="card">
+                <h3><img src="https://flagcdn.com/w40/il.png" alt="Israel Flag" class="flag"> ישראל (Israel)</h3>
+                <span class="badge">ETA-IL</span>
+                <a href="https://israel-entry.piba.gov.il/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+            </div>
+        </div>
+
+        <!-- קישורים שימושיים / ניהול -->
+        <div class="utilities">
+            <h2 class="section-title">מערכות עזר וכלים שימושיים</h2>
+            <div class="grid-container">
+                <div class="card">
+                    <h3><img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/United_Parcel_Service_logo_2014.svg" alt="UPS Logo" class="brand-logo" onerror="this.style.display='none'"> UPS Israel</h3>
+                    <span class="badge">שירותי משלוח בינלאומיים</span>
+                    <a href="https://www.ups.com/il/en/home" target="_blank" class="btn">כניסה לאתר המשלוחים</a>
+                </div>
+                <div class="card">
+                    <h3><img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/JotForm_logo.svg" alt="Jotform Logo" class="brand-logo" onerror="this.style.display='none'"> Jotform</h3>
+                    <span class="badge">מערכת ניהול טפסים</span>
+                    <div class="credentials">
+                        <div style="margin-bottom: 8px;">
+                            <strong>משתמש:</strong> <span class="val">dvir.abu@amsalem.com</span>
+                        </div>
+                        <div>
+                            <strong>סיסמה:</strong> <span class="val">AMSVISA25</span>
+                        </div>
+                    </div>
+                    <a href="https://www.jotform.com/login/" target="_blank" class="btn">כניסה למערכת Jotform</a>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2026 AMSVISA - מחלקת ויזות. כל הזכויות שמורות.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const searchInput = document.getElementById('searchInput');
+            const cards = document.querySelectorAll('#destinationsGrid .card');
+
+            searchInput.addEventListener('input', function(e) {
+                const searchTerm = e.target.value.toLowerCase();
+
+                cards.forEach(card => {
+                    // מושך את כל הטקסט שבתוך הכרטיסייה לטובת החיפוש
+                    const text = card.textContent.toLowerCase();
+                    
+                    // בודק אם מילת החיפוש קיימת בתוך הטקסט
+                    if (text.includes(searchTerm)) {
+                        card.style.display = ''; // מציג מחדש
+                    } else {
+                        card.style.display = 'none'; // מסתיר
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
