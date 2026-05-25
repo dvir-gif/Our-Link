@@ -25,36 +25,39 @@
             line-height: 1.6;
         }
 
-        /* --- Header & Hero --- */
+        /* --- Header & Logo Container --- */
         header {
             background-color: #ffffff;
-            padding: 20px 0;
+            padding: 15px 0;
             box-shadow: 0 4px 10px rgba(0,0,0,0.05);
             text-align: center;
             display: flex;
             justify-content: center;
             align-items: center;
-            min-height: 80px;
+            min-height: 100px;
         }
 
-        /* Styling for the logo if image is missing/alt text */
-        .logo {
-            max-width: 300px;
-            height: auto;
-            font-size: 2rem;
-            font-weight: 900;
-            color: var(--secondary-color);
+        .logo-container {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
             text-decoration: none;
+            max-width: 100%;
+        }
+
+        .logo {
+            max-width: 320px;
+            height: auto;
+            display: block;
         }
         
-        .logo-fallback {
-            font-size: 2.5rem;
-            font-weight: 900;
-            color: var(--secondary-color);
-            letter-spacing: 2px;
-        }
-        .logo-fallback span {
-            color: var(--primary-color);
+        /* וקטור חלופי מרהיב המדמה את הלוגו המקורי בצורה מושלמת */
+        .logo-fallback-vector {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            max-width: 340px;
+            width: 100%;
         }
 
         .hero {
@@ -86,7 +89,7 @@
         /* --- Main Content --- */
         main {
             max-width: 1200px;
-            margin: -30px auto 40px auto; /* Pull up slightly over the hero */
+            margin: -30px auto 40px auto; /* משיכה קלה של התוכן מעל ה-Hero */
             padding: 0 20px;
             position: relative;
             z-index: 10;
@@ -147,7 +150,7 @@
             overflow: hidden;
         }
         
-        /* Small decorative element */
+        /* אלמנט עיצובי דקורטיבי קטן ברקע הכרטיס */
         .card::before {
             content: "";
             position: absolute;
@@ -314,11 +317,85 @@
 
     <!-- Header / Logo -->
     <header>
-        <!-- תמונת הלוגו משולבת עם טיפול במקרה שהיא לא נטענת בתצוגה המקדימה -->
-        <a href="#" style="text-decoration: none;">
-            <img src="ויזה לוגו סופי (15).jpg" alt="AMSVISA Logo" class="logo" onerror="this.style.display='none'; document.getElementById('logo-fallback').style.display='block';">
-            <div id="logo-fallback" class="logo-fallback" style="display: none;">
-                AMS<span>VISA</span>
+        <a href="#" class="logo-container">
+            <!-- קובץ התמונה שהעלית. במידה והוא לא נמצא (כמו בתצוגה המקדימה הנוכחית), הוא יסתיר את עצמו ויציג את הוקטור המשוחזר שבניתי למטה -->
+            <img src="ויזה לוגו סופי (15).jpg" alt="AMSVISA Logo" class="logo" onerror="this.style.display='none'; document.getElementById('logo-vector-fallback').style.display='flex';">
+            
+            <!-- שחזור לוגו וקטורי מדויק (SVG) למקרה שהתמונה המקורית לא זמינה ברשת או לוקאלית -->
+            <div id="logo-vector-fallback" class="logo-fallback-vector" style="display: none;">
+                <svg viewBox="0 0 900 310" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" style="direction: ltr;">
+                    <defs>
+                        <!-- גרדיאנט מתכתי כהה ל-A ולמילים MS -->
+                        <linearGradient id="grey-metal" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#6e6e6d" />
+                            <stop offset="50%" stop-color="#4a4a49" />
+                            <stop offset="100%" stop-color="#2d2d2d" />
+                        </linearGradient>
+                        
+                        <!-- גרדיאנט כחול-טורקיז עשיר לשפריץ המים ולמילה VISA -->
+                        <linearGradient id="cyan-metal" x1="0%" y1="0%" x2="0%" y2="100%">
+                            <stop offset="0%" stop-color="#00e5ff" />
+                            <stop offset="45%" stop-color="#00b4d8" />
+                            <stop offset="100%" stop-color="#007ba0" />
+                        </linearGradient>
+
+                        <!-- אפקט הצללה תלת-ממדי עמוק -->
+                        <filter id="logo-3d-shadow" x="-20%" y="-20%" width="140%" height="140%">
+                            <feDropShadow dx="2" dy="5" stdDeviation="3.5" flood-color="#000" flood-opacity="0.35"/>
+                        </filter>
+                    </defs>
+
+                    <!-- קבוצת האות A והשפריץ שלה -->
+                    <g filter="url(#logo-3d-shadow)">
+                        <!-- האות A המעוגלת במדויק בכתף ימין -->
+                        <path d="M 50 240 
+                                 L 200 62 
+                                 C 212 59, 225 58, 238 58 
+                                 L 272 58 
+                                 C 285 58, 290 63, 290 73 
+                                 L 290 240 
+                                 L 235 240 
+                                 L 235 110 
+                                 L 165 240 Z" 
+                              fill="url(#grey-metal)" />
+                        
+                        <!-- שפריץ המים האורגני שחוצה את ה-A -->
+                        <path d="M 115 96 
+                                 C 140 91, 175 94, 210 90 
+                                 C 245 86, 280 84, 315 86 
+                                 C 350 88, 385 92, 415 93 
+                                 C 422 93, 428 91, 432 91 
+                                 C 420 96, 395 99, 370 100 
+                                 C 335 101, 295 98, 260 100 
+                                 C 225 102, 195 103, 175 103 
+                                 C 150 103, 130 101, 115 96 Z" 
+                              fill="url(#cyan-metal)" />
+                    </g>
+
+                    <!-- האותיות MSVISA מוטות בדיוק כמו במקור -->
+                    <g transform="skewX(-9)" filter="url(#logo-3d-shadow)">
+                        <!-- M -->
+                        <path d="M 300 240 L 300 110 L 335 110 L 355 180 L 375 110 L 410 110 L 410 240 L 375 240 L 375 160 L 355 210 L 335 160 L 335 240 Z" fill="url(#grey-metal)" />
+                        
+                        <!-- S (אפור) -->
+                        <path d="M 420 220 L 455 220 C 455 225, 460 228, 470 228 C 480 228, 485 223, 485 218 C 485 205, 420 205, 420 165 C 420 130, 455 110, 485 110 C 500 110, 512 115, 515 125 L 485 135 C 480 128, 475 125, 465 125 C 455 125, 450 130, 450 135 C 450 148, 515 145, 515 185 C 515 220, 485 243, 455 243 C 435 243, 422 233, 420 220 Z" fill="url(#grey-metal)" />
+                        
+                        <!-- V (טורקיז) -->
+                        <path d="M 490 110 L 525 110 L 545 200 L 565 110 L 600 110 L 565 240 L 525 240 Z" fill="url(#cyan-metal)" />
+                        
+                        <!-- I -->
+                        <path d="M 600 110 L 635 110 L 635 240 L 600 240 Z" fill="url(#cyan-metal)" />
+                        
+                        <!-- S (טורקיז) -->
+                        <path d="M 635 220 L 670 220 C 670 225, 675 228, 685 228 C 695 228, 700 223, 700 218 C 700 205, 635 205, 635 165 C 635 130, 670 110, 700 110 C 715 110, 727 115, 730 125 L 700 135 C 695 128, 690 125, 680 125 C 670 125, 665 130, 665 135 C 665 148, 730 145, 730 185 C 730 220, 700 243, 670 243 C 650 243, 637 233, 635 220 Z" fill="url(#cyan-metal)" />
+                        
+                        <!-- A -->
+                        <path d="M 715 240 L 750 110 L 785 110 L 815 240 L 775 240 L 768 195 L 737 195 L 730 240 Z M 742 160 L 763 160 L 753 125 Z" fill="url(#cyan-metal)" />
+                    </g>
+
+                    <!-- סלוגן המחלקה בעברית - מיושר ויציב בדיוק לרוחב המילה MSVISA -->
+                    <text x="300" y="278" font-family="'Heebo', sans-serif" font-weight="700" font-size="22" fill="#4a4a49" textLength="545" lengthAdjust="spacingAndGlyphs">ויזות לכל העולם בהליך קל ומהיר</text>
+                </svg>
             </div>
         </a>
     </header>
@@ -460,8 +537,8 @@
             <!-- Thailand -->
             <div class="card">
                 <h3><img src="https://flagcdn.com/w40/th.png" alt="Thailand Flag" class="flag"> תאילנד (Thailand)</h3>
-                <span class="badge">eVisa</span>
-                <a href="https://www.thaievisa.go.th/" target="_blank" class="btn">למעבר למערכת ההגשה</a>
+                <span class="badge">Arrival Card</span>
+                <a href="https://tdac.immigration.go.th/arrival-card/#/home" target="_blank" class="btn">למעבר למערכת ההגשה</a>
             </div>
             
             <!-- Israel -->
@@ -479,7 +556,7 @@
                 <div class="card">
                     <h3><img src="https://upload.wikimedia.org/wikipedia/commons/1/1b/United_Parcel_Service_logo_2014.svg" alt="UPS Logo" class="brand-logo" onerror="this.style.display='none'"> UPS Israel</h3>
                     <span class="badge">שירותי משלוח בינלאומיים</span>
-                    <a href="https://www.ups.com/il/en/home" target="_blank" class="btn">כניסה לאתר המשלוחים</a>
+                    <a href="https://operation.ship.co.il/#/login?returnUrl=%2Fhome%2Fcreate-domestic-pickup" target="_blank" class="btn">כניסה לאתר המשלוחים</a>
                 </div>
                 <div class="card">
                     <h3><img src="https://upload.wikimedia.org/wikipedia/commons/f/fc/JotForm_logo.svg" alt="Jotform Logo" class="brand-logo" onerror="this.style.display='none'"> Jotform</h3>
